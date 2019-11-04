@@ -79,4 +79,4 @@ const updateUI = async () => {
   }
 }
 
-postData('/add', {temp:'38', feeling: 'Today was cold.'})
+// postData('/add', {temp:'38', feeling: 'Today was cold.'})
