@@ -1,7 +1,7 @@
 //jshint esversion: 6
  
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+projectData = [];
 
 // Require Express to run server and routes
 const express = require('express');
@@ -44,13 +44,16 @@ function listening(){
 //     res.send(fakelocation)
 // }
 
-const locationData = [];
+
 app.get('/all', getData)
 function getData(req, res){
-    res.send(locationData)
+    res.send(projectData)
 }
 
 //POST route
+app.post("/", function(req, res){
+    request(baseURL)
+})
 
 app.post('/add', function(req, res){   
     // console.log(req.body)
@@ -58,12 +61,11 @@ app.post('/add', function(req, res){
     newEntry={
         // date: req.body.date,
         zip: req.body.zip,
-        temp: req.main.temp,
+        temp: req.body.temp,
         feeling: req.body.feeling
     }
-    locationData.push(newEntry)
-    res.send(locationData)
-    console.log(locationData);
-}
- );
+    projectData.push(newEntry)
+    res.send(projectData)
+    console.log(projectData);
+});
    
