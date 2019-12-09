@@ -56,10 +56,13 @@ const updateUI = async () => {
   const request = await fetch('/all')
   try{
     const allData = await request.json()
+
+    const temp = Math.round( (allData[0].temp - 273.15) * 10 ) / 10;
     
-    const content = document.getElementById('date').innerHTML = `<h2>${newDate}</h2>`;
-    document.getElementById('temp').innerHTML = allData[0].temp;
-    document.getElementById('content').innerHTML = allData[0].feeling;
+    const content = document.getElementById('date').innerHTML = `Today is: <strong>${newDate}</strong>`;
+    document.getElementById('temp').innerHTML = `<strong>${temp} °C</strong>`;
+    document.getElementById('content').innerHTML = `<strong>Felling: </strong>${allData[0].feeling}`;
+    
   
   }catch(error){
     console.log("error", error);
